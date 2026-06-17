@@ -27,8 +27,14 @@ estúdios). O trabalho é tirar as amarras da máquina do Vitor.
    clamp entre `ZOOM_FLOOR=0.04` e `ZOOM_CAP=0.08` (em vez do `ZOOM_MIN_W=0.05` fixo). `set_zoom_min_w()`/`_zmw()`
    aplicam o override por vídeo; `rc_framing.plan` calibra uma vez (grava em `framing.json`), `apply_override` e
    `cut` reusam. Mata o knob frágil entre estúdios. Testado: close-up (mediana ~0.115) → 0.063; super aberto → piso 0.04.
-6. **Empacotar.** ⬜ Repo próprio (sair de dentro de `reel-editor/`): SKILL.md + rc_*.py + reel_cut.py
-   + models/ + requirements.txt + README de install. Distribuível via `npx skills add <repo>` ou plugin.
+6. **Empacotar. ✅ FEITO 2026-06-17.** Virou o plugin **`pods-and-reels`** (`reel-cut` é a 1ª skill).
+   Estrutura: `.claude-plugin/plugin.json` na raiz; scripts + `models/` + `requirements*.txt` + `output/`
+   movidos pra `skills/reel-cut/`; `SKILL.md` do plugin de-hardcodado (`${CLAUDE_SKILL_DIR}/reel_cut.py`,
+   jobs em `${CLAUDE_SKILL_DIR}/output/<slug>`, sem `machine-specific`); `README.md` reescrito; `_fwtest.py`
+   deletado; **git init + commit inicial** (26 arquivos, YuNet versionado, mídia fora). Distribuição:
+   push pro GitHub → `/plugin marketplace add <usuário>/pods-and-reels` → `/plugin install pods-and-reels`
+   (ou `--plugin-dir` pra teste local). **Falta (fora da sessão):** validar a install (exige reiniciar o
+   Claude Code) e o rename físico da pasta `reel-cut`→`pods-and-reels` (CWD travada na sessão).
 
 ## Fluxo de aprovação guiado (pedido do Vitor — próxima fase)
 
