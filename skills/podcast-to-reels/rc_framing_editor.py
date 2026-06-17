@@ -76,6 +76,8 @@ _PAGE = r"""<!doctype html>
   .arrow{flex:none;font-size:30px;color:var(--mut);margin-bottom:26px}
   .frctl{display:flex;flex-wrap:wrap;gap:7px;align-items:center}
   .frctl .lbl{color:var(--mut);font-size:12.5px;margin-right:2px}
+  .frnote{margin-top:9px;font-size:12.5px;color:#e3a857;background:#2a2418;
+          border:1px solid #4a3c1e;border-radius:var(--r1);padding:7px 10px}
 </style></head>
 <body>
 <header>
@@ -126,6 +128,7 @@ function render(){
     html += LAYOUTS.map(l =>
       '<button data-layout="' + l.k + '"' + (l.k===g.layout?' class="on"':'') + '>' + l.t + '</button>').join('');
     html += '</div>';
+    if (g._note) html += '<div class="frnote">' + esc(g._note) + '</div>';
     sec.innerHTML = html;
     sec.querySelectorAll('.frctl button').forEach(b => {
       b.onclick = () => override(g.sig, b.dataset.layout, sec);
@@ -142,7 +145,14 @@ async function override(sig, layout, sec){
   const g = await res.json();
   sec.classList.remove('busy');
   const idx = FR.findIndex(x => x.sig === sig);
-  if (idx >= 0 && g && g.sig){ g._v = (FR[idx]._v||0) + 1; FR[idx] = g; render(); }
+  if (idx >= 0 && g && g.sig){
+    const EXPECT = {pad:'letterbox', solo_left:'solo', solo_right:'solo', two_stack:'stack'};
+    const exp = EXPECT[layout];
+    g._note = (exp && g.kind !== exp)
+      ? 'Esse plano não comporta esse enquadramento (rosto pequeno demais ou só 1 pessoa). Mantido: ' + g.label + '.'
+      : '';
+    g._v = (FR[idx]._v||0) + 1; FR[idx] = g; render();
+  }
 }
 
 async function finish(mode){

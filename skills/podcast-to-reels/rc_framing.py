@@ -71,7 +71,8 @@ def plan(work_dir: str, render: bool = True) -> dict:
         layout = seg.get("layout", "auto")
         cuts = [] if layout == "pad" else scene.detect_cuts(video, start, end)
         shots = scene.shots_from_cuts(start, end, cuts)
-        print(f"[framing] corte {si + 1} '{seg.get('title', '')}': {len(shots)} plano(s)", flush=True)
+        if os.environ.get("RC_VERBOSE"):
+            print(f"[framing] corte {si + 1} '{seg.get('title', '')}': {len(shots)} plano(s)", flush=True)
 
         shot_plans = []
         for a, b in shots:

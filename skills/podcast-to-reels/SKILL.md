@@ -14,8 +14,11 @@ Transforma uma gravação longa talking-head em clipes verticais 9:16 com legend
 OS-agnóstico: `reel_cut.py`, ao lado deste SKILL.md.
 
 **Os scripts ficam na pasta deste skill.** Sempre invocar pelo caminho `${CLAUDE_SKILL_DIR}` (o Claude Code
-resolve em qualquer OS), nunca caminho fixo. Os jobs (download, transcrição, prévias, clipes) ficam em
-`${CLAUDE_SKILL_DIR}/output/<slug-do-título>/`. Notas de dev: `README.md` / `PLAN-distribuir.md` na raiz do plugin.
+resolve em qualquer OS), nunca caminho fixo. **Mas a mídia (jobs) NÃO vai pra dentro do plugin:** `${CLAUDE_SKILL_DIR}`
+fica num cache recriado a cada atualização do plugin, então a mídia sumiria. Os jobs ficam numa **pasta do usuário**,
+por OS: Windows `%USERPROFILE%\Videos\pods-and-reels\<slug>`, macOS `~/Movies/pods-and-reels/<slug>`, Linux
+`~/Videos/pods-and-reels/<slug>` (cai pra `~/pods-and-reels` se não houver Videos). Notas de dev: `README.md` /
+`PLAN-distribuir.md` na raiz do plugin.
 
 > Encoding utf-8, CUDA→CPU e PATH do Deno são tratados dentro do Python — não precisa de `PYTHONIOENCODING`
 > nem mexer no PATH. Logs técnicos só aparecem com `RC_VERBOSE=1` (não ligar no uso normal).
@@ -48,10 +51,12 @@ limpas em PT; **logs técnicos ficam atrás de `RC_VERBOSE=1`** (não ligar no u
 simples; páginas de revisão (legenda, enquadramento) **só abrem se o usuário disser sim**. Erros que o próprio sistema
 (Whisper) cometeu, corrigir **por baixo dos panos** — não expor ao usuário (não foi erro dele, confunde).
 
-1. **Pasta do job:** `${CLAUDE_SKILL_DIR}/output/<slug-do-título>` — slug curto do **título do programa/vídeo**
-   (kebab-case, sem data), ex.: `${CLAUDE_SKILL_DIR}/output/chorume-de-ia`. O `output/` (dentro do skill) é o container
-   de todos os jobs (ignorado do Dropbox/git — guarda mídia pesada). Tudo do job (download, transcrição, prévias,
-   clipes) fica nessa pasta; os clipes finais em `<JOB>/clipes/`. (Daqui pra frente, `<JOB>` = essa pasta.)
+1. **Pasta do job:** uma pasta **do usuário** (NUNCA dentro do plugin/`${CLAUDE_SKILL_DIR}`, que vive num cache
+   recriado a cada atualização do plugin: a mídia sumiria). Base por OS: Windows `%USERPROFILE%\Videos\pods-and-reels`,
+   macOS `~/Movies/pods-and-reels`, Linux `~/Videos/pods-and-reels` (cai pra `~/pods-and-reels` se não houver Videos).
+   O job é `<base>/<slug-do-título>`, slug curto do **título do vídeo** (kebab-case, sem data), ex.:
+   `.../pods-and-reels/o-mae-podcast`. Tudo do job (download, transcrição, prévias, clipes) fica nessa pasta; os clipes
+   finais em `<JOB>/clipes/`. (Daqui pra frente, `<JOB>` = essa pasta.) Se o usuário quiser outro lugar, ele manda.
 2. **Confirmar o vídeo:**
    ```
    python "${CLAUDE_SKILL_DIR}/reel_cut.py" probe --url "<URL>"  --out "<JOB>"     #  ou:  probe --file "C:\...\v.mp4" --out "<JOB>"
@@ -91,9 +96,9 @@ simples; páginas de revisão (legenda, enquadramento) **só abrem se o usuário
 10. **Entregar com mensagem EVIDENTE** (emoji + separadores), listando os clipes como **links clicáveis** + a pasta como link:
     ```
     ## 🎬 N clipes prontos!
-    1. [Título do corte](output/<slug>/clipes/01_....mp4) · 43s
+    1. [Título do corte](<JOB>/clipes/01_....mp4) · 43s
     ...
-    📁 Pasta: [output/<slug>/clipes](output/<slug>/clipes)
+    📁 Pasta: [<JOB>/clipes](<JOB>/clipes)
     ```
     Oferecer abrir a pasta (`Start-Process explorer "<JOB>\clipes"`).
 

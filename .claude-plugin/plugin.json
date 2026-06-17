@@ -1,6 +1,7 @@
 {
   "name": "pods-and-reels",
   "description": "Transforma gravações longas (podcast, live, aula) em clipes verticais 9:16 com legenda queimada. A escolha dos trechos é feita pelo Claude na sessão, sem API paga. Crop ciente de cena e de quem está falando (solo / empilhado / letterbox).",
+  "version": "0.1.0",
   "author": { "name": "Vitor Peçanha", "email": "pecanha@pbyp.com.br" },
   "license": "MIT"
 }

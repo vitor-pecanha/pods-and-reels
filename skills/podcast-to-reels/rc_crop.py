@@ -306,7 +306,7 @@ def plan_vertical_filter(video, start, dur, src_w, src_h, layout="auto"):
 
     people = analyze_people(video, start, dur, src_w, src_h)
     if not people:
-        print("   [crop] sem rosto utilizavel -> letterbox", flush=True)
+        if os.environ.get("RC_VERBOSE"): print("   [crop] sem rosto utilizavel -> letterbox", flush=True)
         return pad
 
     def big(p):
@@ -317,7 +317,7 @@ def plan_vertical_filter(video, start, dur, src_w, src_h, layout="auto"):
             return {"complex": False, "chain": _single_face_chain(src_w, src_h, p),
                     "sig": f"solo-{_lado(p['cx'])}", "kind": "solo",  # agrupa por lado, não por cx exato
                     "label": f"solo ({_lado(p['cx'])})"}
-        print("   [crop] rosto pequeno demais p/ zoom -> letterbox", flush=True)
+        if os.environ.get("RC_VERBOSE"): print("   [crop] rosto pequeno demais p/ zoom -> letterbox", flush=True)
         return pad
 
     def stack(a, b):
@@ -336,18 +336,18 @@ def plan_vertical_filter(video, start, dur, src_w, src_h, layout="auto"):
     if len(people) >= 2:
         top2 = sorted(people, key=lambda p: p["n"], reverse=True)[:2]
         hi, lo = sorted(top2, key=lambda p: p["corr"], reverse=True)
-        print(f"   [crop] 2 rostos corr={hi['corr']}/{lo['corr']} w={round(hi['w'],3)}/{round(lo['w'],3)}", flush=True)
+        if os.environ.get("RC_VERBOSE"): print(f"   [crop] 2 rostos corr={hi['corr']}/{lo['corr']} w={round(hi['w'],3)}/{round(lo['w'],3)}", flush=True)
         if hi["corr"] >= CORR_MIN and (hi["corr"] - lo["corr"]) >= CORR_MARGIN:
-            print("   [crop] locutor ativo -> solo", flush=True)
+            if os.environ.get("RC_VERBOSE"): print("   [crop] locutor ativo -> solo", flush=True)
             return solo(hi)
         ab = sorted(top2, key=lambda p: p["cx"])
         if big(ab[0]) and big(ab[1]):
-            print("   [crop] os dois falam -> empilhado", flush=True)
+            if os.environ.get("RC_VERBOSE"): print("   [crop] os dois falam -> empilhado", flush=True)
             return stack(ab[0], ab[1])
-        print("   [crop] empilhar pixelaria -> solo no maior / letterbox", flush=True)
+        if os.environ.get("RC_VERBOSE"): print("   [crop] empilhar pixelaria -> solo no maior / letterbox", flush=True)
         return solo(max(top2, key=lambda p: p["w"]))
 
-    print("   [crop] 1 rosto -> solo", flush=True)
+    if os.environ.get("RC_VERBOSE"): print("   [crop] 1 rosto -> solo", flush=True)
     return solo(people[0])
 
 
