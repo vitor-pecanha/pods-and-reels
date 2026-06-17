@@ -20,7 +20,7 @@ empilhado / letterbox) e se auto-calibra ao enquadramento de cada estúdio.
 Como plugin, a partir do repositório:
 
 ```
-/plugin marketplace add <seu-usuário>/pods-and-reels
+/plugin marketplace add vitor-pecanha/pods-and-reels
 /plugin install pods-and-reels
 ```
 
