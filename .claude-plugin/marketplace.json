@@ -1,0 +1,16 @@
+{
+  "name": "pods-and-reels",
+  "owner": {
+    "name": "Vitor Peçanha",
+    "email": "pecanha@pbyp.com.br"
+  },
+  "description": "Plugin do Claude Code pra transformar gravações longas (podcast, live, aula) em clipes verticais 9:16 com legenda queimada.",
+  "plugins": [
+    {
+      "name": "pods-and-reels",
+      "source": "./",
+      "description": "Transforma gravações longas em clipes verticais 9:16 com legenda queimada. A escolha dos trechos é feita pelo Claude na sessão, sem API paga. Crop ciente de cena e de quem está falando (solo / empilhado / letterbox). Primeira skill: podcast-to-reels.",
+      "license": "MIT"
+    }
+  ]
+}

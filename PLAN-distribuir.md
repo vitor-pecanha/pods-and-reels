@@ -32,7 +32,8 @@ estúdios). O trabalho é tirar as amarras da máquina do Vitor.
    movidos pra `skills/reel-cut/`; `SKILL.md` do plugin de-hardcodado (`${CLAUDE_SKILL_DIR}/reel_cut.py`,
    jobs em `${CLAUDE_SKILL_DIR}/output/<slug>`, sem `machine-specific`); `README.md` reescrito; `_fwtest.py`
    deletado; **git init + commit inicial** (26 arquivos, YuNet versionado, mídia fora). Distribuição:
-   push pro GitHub → `/plugin marketplace add <usuário>/pods-and-reels` → `/plugin install pods-and-reels`
+   push pro GitHub → `/plugin marketplace add vitor-pecanha/pods-and-reels` → `/plugin install pods-and-reels@pods-and-reels`
+   (precisa de `.claude-plugin/marketplace.json` com `source: "./"`, já criado e validado com `claude plugin validate .`)
    (ou `--plugin-dir` pra teste local). **Falta (fora da sessão):** validar a install (exige reiniciar o
    Claude Code) e o rename físico da pasta `reel-cut`→`pods-and-reels` (CWD travada na sessão).
 

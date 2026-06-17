@@ -21,7 +21,7 @@ Como plugin, a partir do repositório:
 
 ```
 /plugin marketplace add vitor-pecanha/pods-and-reels
-/plugin install pods-and-reels
+/plugin install pods-and-reels@pods-and-reels
 ```
 
 Ou, pra testar local durante o desenvolvimento:
