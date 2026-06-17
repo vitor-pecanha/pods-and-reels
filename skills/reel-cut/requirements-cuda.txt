@@ -1,0 +1,5 @@
+# Libs CUDA pro faster-whisper rodar na GPU (Win/Linux com NVIDIA).
+# Instaladas pelo `setup` só quando detecta GPU. Mac/CPU NÃO precisa disso.
+# rc_whisper adiciona estes dirs ao loader em runtime (os.add_dll_directory / LD_LIBRARY_PATH).
+nvidia-cublas-cu12
+nvidia-cudnn-cu12

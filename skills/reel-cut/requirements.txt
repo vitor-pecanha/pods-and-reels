@@ -1,0 +1,7 @@
+# reel-cut — dependências core (multiplataforma, CPU funciona em qualquer OS).
+# GPU em Win/Linux: rode tambem requirements-cuda.txt (o `setup` faz isso se
+# detectar uma NVIDIA). Mac roda em CPU (sem libs CUDA).
+faster-whisper>=1.0      # transcrição (puxa ctranslate2)
+opencv-python>=4.8       # detecção de rosto YuNet (cv2.FaceDetectorYN)
+numpy>=1.24              # correlação boca×áudio (locutor ativo)
+yt-dlp>=2024.1           # download de YouTube (Fase 1 com --url)

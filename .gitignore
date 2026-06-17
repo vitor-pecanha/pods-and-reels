@@ -1,0 +1,16 @@
+# Mídia e artefatos de trabalho (nunca versionar — pesado)
+work/
+output/
+src/
+download/
+*.mp4
+*.mov
+*.mkv
+*.wav
+*.ass
+*.srt
+*.png
+*.jpg
+
+__pycache__/
+*.pyc
