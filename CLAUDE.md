@@ -1,11 +1,11 @@
 # reel-cut — contexto pra Claude
 
 Tool local de edição de vídeo do Vitor Peçanha. **Este repositório é o código da tool**
-(desenvolvimento). O uso no dia a dia é via skill nível-usuário `/reel-cut`
-(`~/.claude/skills/reel-cut/SKILL.md`), que aponta pra cá.
+(desenvolvimento). O uso no dia a dia é via skill nível-usuário `/podcast-to-reels`
+(`~/.claude/skills/podcast-to-reels/SKILL.md`), que aponta pra cá.
 
-Empacotado como **plugin `pods-and-reels`** em 2026-06-17 (`reel-cut` é a 1ª skill; outras virão).
-Os scripts moraram pra `skills/reel-cut/`; a raiz tem `.claude-plugin/plugin.json`, `README.md` e os
+Empacotado como **plugin `pods-and-reels`** em 2026-06-17 (`podcast-to-reels` é a 1ª skill; outras virão).
+Os scripts moraram pra `skills/podcast-to-reels/`; a raiz tem `.claude-plugin/plugin.json`, `README.md` e os
 `PLAN-*.md`. Repo git iniciado (commit inicial). Mudou pra `claude_projects\reel-cut\` em 2026-06-16
 (antes em `reel-editor\reel-cut\`, fora do Dropbox); o backup antigo segue intacto até validação.
 
@@ -23,14 +23,14 @@ paga — é decisão de design do Vitor, não trocar por heurística/API.
 
 ## Como rodar (entrypoint único, OS-agnóstico)
 
-Os scripts ficam em `skills/reel-cut/`. Jobs em `skills/reel-cut/output/<slug-do-título>/`.
+Os scripts ficam em `skills/podcast-to-reels/`. Jobs em `skills/podcast-to-reels/output/<slug-do-título>/`.
 
 ```
-python skills/reel-cut/reel_cut.py setup                                          # deps, modelos, ffmpeg/Deno/CUDA
-python skills/reel-cut/reel_cut.py probe --url <URL> --out skills/reel-cut/output/x        # confirmar vídeo (pré-download)
-python skills/reel-cut/reel_cut.py transcribe --url <URL> --out skills/reel-cut/output/x   # (ou --file v.mp4)
+python skills/podcast-to-reels/reel_cut.py setup                                          # deps, modelos, ffmpeg/Deno/CUDA
+python skills/podcast-to-reels/reel_cut.py probe --url <URL> --out skills/podcast-to-reels/output/x        # confirmar vídeo (pré-download)
+python skills/podcast-to-reels/reel_cut.py transcribe --url <URL> --out skills/podcast-to-reels/output/x   # (ou --file v.mp4)
 #  Claude lê output/x/transcript.txt, escreve output/x/segments.json
-python skills/reel-cut/reel_cut.py cut --work skills/reel-cut/output/x            # clipes em output/x/clipes/
+python skills/podcast-to-reels/reel_cut.py cut --work skills/podcast-to-reels/output/x            # clipes em output/x/clipes/
 ```
 
 `reel_cut.py` força encoding utf-8 e resolve CUDA→CPU e PATH do Deno sozinho — **não**
@@ -40,9 +40,9 @@ vira `${CLAUDE_SKILL_DIR}/reel_cut.py` (o Claude Code resolve a pasta da skill e
 ## Estrutura
 
 Layout de plugin: `.claude-plugin/plugin.json` (manifesto, `name: pods-and-reels`) na raiz;
-`README.md` + `PLAN-*.md` + `PRODUCT.md` na raiz; tudo o que roda fica em `skills/reel-cut/`.
+`README.md` + `PLAN-*.md` + `PRODUCT.md` na raiz; tudo o que roda fica em `skills/podcast-to-reels/`.
 
-| Arquivo (em `skills/reel-cut/`) | Papel |
+| Arquivo (em `skills/podcast-to-reels/`) | Papel |
 |---|---|
 | `reel_cut.py` | entrypoint (`setup`/`probe`/`transcribe`/`captions`/`preview`/`cut`) |
 | `clip_live.py` | lógica da Fase 1 |

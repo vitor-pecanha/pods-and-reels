@@ -1,5 +1,5 @@
 ---
-name: reel-cut
+name: podcast-to-reels
 description: "Transformar gravação longa talking-head (live, aula, podcast) em vários clipes verticais 9:16 com legenda queimada. A escolha dos trechos é feita pelo Claude na sessão (sem API paga). Usar quando a pessoa quiser clipar/cortar as próprias gravações de vídeo. (Fase 2, em construção: limpar gravação de corrido detectando retakes.)"
 metadata:
   category: "video"
@@ -7,7 +7,7 @@ metadata:
     bins: [python, ffmpeg]
 ---
 
-# reel-cut
+# podcast-to-reels
 
 Transforma uma gravação longa talking-head em clipes verticais 9:16 com legenda. A **segmentação
 (escolha dos trechos) é feita por mim (Claude) na sessão**, sem API paga. Entrypoint único
@@ -109,7 +109,7 @@ python "${CLAUDE_SKILL_DIR}/retake_editor.py" detect --work "<WORK>"
 ```
 `detect` gera `retakes.txt`/`retakes.json` com os clusters de takes repetidas. Eu (ou o Vitor)
 escolho o keeper de cada cluster. O `assemble` (montar o corte final) **ainda não está pronto**:
-ver decisões abertas em `reel-cut\PLAN-retake.md` (UX da escolha; corte de silêncio nativo vs Auto-Editor;
+ver decisões abertas em `PLAN-retake.md` na raiz do plugin (UX da escolha; corte de silêncio nativo vs Auto-Editor;
 precisa de um sample real pra calibrar).
 
 ## Ideias futuras anotadas

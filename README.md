@@ -7,7 +7,7 @@ A **escolha dos trechos é feita pelo Claude na sua sessão** (sem API paga): el
 sugere os melhores cortes, você aprova. O crop é **ciente de cena e de quem está falando** (solo /
 empilhado / letterbox) e se auto-calibra ao enquadramento de cada estúdio.
 
-> `reel-cut` é a primeira skill do plugin; outras virão.
+> `podcast-to-reels` é a primeira skill do plugin; outras virão.
 
 ## Pré-requisitos
 
@@ -35,24 +35,24 @@ claude --plugin-dir /caminho/para/pods-and-reels
 Instala as dependências Python, baixa o modelo de rosto (YuNet) e checa ffmpeg/Deno/CUDA:
 
 ```
-/reel-cut         (e peça "rode o setup")
+/podcast-to-reels         (e peça "rode o setup")
 # ou direto:
-python "<plugin>/skills/reel-cut/reel_cut.py" setup
+python "<plugin>/skills/podcast-to-reels/reel_cut.py" setup
 ```
 
 ## Usar
 
-Chame **`/reel-cut`** e mande um vídeo (link do YouTube ou arquivo local). O Claude conduz:
+Chame **`/podcast-to-reels`** e mande um vídeo (link do YouTube ou arquivo local). O Claude conduz:
 confirmar o vídeo → transcrever → sugerir e aprovar os cortes → (opcional) revisar a legenda no
 navegador → (opcional) conferir o enquadramento → cortar. Os clipes saem em
-`skills/reel-cut/output/<título-do-vídeo>/clipes/`.
+`skills/podcast-to-reels/output/<título-do-vídeo>/clipes/`.
 
 ## Estrutura
 
 ```
 pods-and-reels/
 ├── .claude-plugin/plugin.json     manifesto do plugin
-├── skills/reel-cut/               a skill: SKILL.md + scripts Python + models/ + output/
+├── skills/podcast-to-reels/       a skill: SKILL.md + scripts Python + models/ + output/
 ├── PLAN-distribuir.md             roadmap
 └── README.md
 ```
