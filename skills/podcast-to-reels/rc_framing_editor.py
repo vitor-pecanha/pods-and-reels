@@ -25,7 +25,7 @@ import rc_framing
 _PAGE = r"""<!doctype html>
 <html lang="pt-br"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>reel-cut — conferir enquadramento</title>
+<title>podcast-to-reels: conferir enquadramento</title>
 <link rel="icon" href="data:,">
 <style>
   :root{

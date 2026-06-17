@@ -1,4 +1,4 @@
-"""reel_cut.py — entrypoint único, OS-agnóstico, do reel-cut.
+"""reel_cut.py — entrypoint único, OS-agnóstico, do podcast-to-reels.
 
 Chamado igual em qualquer OS (sem PowerShell, sem PYTHONIOENCODING manual, sem
 paths fixos):
@@ -34,7 +34,7 @@ def _cmd_setup(args):
 
 
 def main():
-    p = argparse.ArgumentParser(prog="reel_cut", description="reel-cut — gravação longa -> clipes verticais 9:16")
+    p = argparse.ArgumentParser(prog="reel_cut", description="podcast-to-reels: gravação longa -> clipes verticais 9:16")
     sub = p.add_subparsers(dest="stage", required=True)
 
     s = sub.add_parser("setup", help="instala deps, baixa modelos, checa ffmpeg/Deno")

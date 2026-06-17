@@ -1,4 +1,4 @@
-"""rc_setup.py — setup multiplataforma do reel-cut.
+"""rc_setup.py — setup multiplataforma do podcast-to-reels.
 
 Idempotente: roda quantas vezes quiser. Faz o mínimo pra outra máquina (Win/Mac/
 Linux) conseguir transcrever e cortar:
@@ -112,7 +112,7 @@ def ensure_yunet() -> bool:
 
 def run(check_only: bool = False) -> int:
     _info("=" * 60)
-    _info(f"reel-cut setup  ({'diagnóstico' if check_only else 'instalação'})  —  {sys.platform}, Python {sys.version.split()[0]}")
+    _info(f"podcast-to-reels setup  ({'diagnóstico' if check_only else 'instalação'})  ·  {sys.platform}, Python {sys.version.split()[0]}")
     _info("=" * 60)
 
     cuda = detect_cuda()
