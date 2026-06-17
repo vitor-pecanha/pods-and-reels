@@ -39,11 +39,30 @@ O `setup` instala sozinho (via pip), você não precisa se preocupar:
 
 ## Instalar
 
-No Claude Code:
+A forma de instalar muda conforme onde você usa o Claude. O `/plugin` existe só no terminal.
+
+**No terminal (CLI):**
 
 ```
 /plugin marketplace add vitor-pecanha/pods-and-reels
 /plugin install pods-and-reels@pods-and-reels
+```
+
+**No app desktop do Claude:** não tem `/plugin`; use o gerenciador visual. Clique no botão **+** ao lado da
+caixa de mensagem, abra **Manage plugins**, clique no **+** de novo e escolha **Add marketplace**, colando a
+URL do repositório (`https://github.com/vitor-pecanha/pods-and-reels`). Depois instale o plugin
+**pods-and-reels** a partir desse marketplace. (Funciona em sessões locais; sessões na nuvem não suportam plugins.)
+
+**Em qualquer superfície (editando o `settings.json`):** adicione ao `~/.claude/settings.json` (ou ao
+`.claude/settings.json` do projeto) e reinicie o Claude:
+
+```json
+{
+  "extraKnownMarketplaces": {
+    "pods-and-reels": { "source": { "source": "github", "repo": "vitor-pecanha/pods-and-reels" } }
+  },
+  "enabledPlugins": { "pods-and-reels@pods-and-reels": true }
+}
 ```
 
 ## Setup (uma vez)

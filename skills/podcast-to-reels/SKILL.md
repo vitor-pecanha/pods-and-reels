@@ -1,6 +1,6 @@
 ---
 name: podcast-to-reels
-description: "Transformar gravação longa talking-head (live, aula, podcast) em vários clipes verticais 9:16 com legenda queimada. A escolha dos trechos é feita pelo Claude na sessão (sem API paga). Usar quando a pessoa quiser clipar/cortar as próprias gravações de vídeo. (Fase 2, em construção: limpar gravação de corrido detectando retakes.)"
+description: "Transforma uma gravação longa (podcast, live, aula, vídeo falado) em clipes verticais com legenda, prontos pra Reels, Shorts e TikTok."
 metadata:
   category: "video"
   requires:
