@@ -142,7 +142,7 @@ def run(check_only: bool = False) -> int:
     else:
         _warn(f"ffmpeg NÃO encontrado. Instale: {_ffmpeg_hint()}")
 
-    _info("\n[4/4] Deno (só pra baixar do YouTube — opcional se você usa --file)")
+    _info("\n[4/4] Deno (pra baixar do YouTube)")
     deno = find_deno()
     if deno:
         _ok(f"deno em {deno}")
